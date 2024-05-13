@@ -1,13 +1,6 @@
 import pygame
 from slidingstartoption import Slidingstartbutton
-from number1 import Number1
-from number2 import Number2
-from number3 import Number3
-# from number4 import Number4
-# from number5 import Number5
-# from number6 import Number6
-# from number7 import Number7
-# from number8 import Number8
+from tiles import Tile
 
 pygame.init()
 pygame.font.init()
@@ -26,9 +19,15 @@ display_start_message = my_font.render(start_message, True, (0, 0, 0))
 
 
 spsb = Slidingstartbutton(180, 100)
-number1 = Number1(180, 100)
-number2 = Number2(200, 150)
-number3 = Number3(200, 200)
+number1 = Tile(0, 0, "number1.png", 50, 50)
+number2 = Tile(50, 0, "number2.png", 50, 50)
+number3 = Tile(100, 0, "number3.png", 50, 50)
+number4 = Tile(0, 50, "number4.png", 50, 50)
+number5 = Tile(50, 50, "number5.png", 50, 50)
+number6 = Tile(100, 50, "number6.png", 50, 50)
+number7 = Tile(0, 100, "number7.png", 50, 50)
+number8 = Tile(50, 100, "number8.png", 50, 50)
+
 
 r = 255
 g = 255
@@ -59,7 +58,17 @@ while run:
         screen.blit(number1.image, number1.rect)
         screen.blit(number2.image, number2.rect)
         screen.blit(number3.image, number3.rect)
-        pygame.draw.line(screen, line_color, (100, 100), (500, 100), width = 5)
+        screen.blit(number4.image, number4.rect)
+        screen.blit(number5.image, number5.rect)
+        screen.blit(number6.image, number6.rect)
+        screen.blit(number7.image, number7.rect)
+        screen.blit(number8.image, number8.rect)
+        
+        pygame.draw.line(screen, line_color, (0, 0), (0, 550), width = 3)
+        pygame.draw.line(screen, line_color, (0, 0), (550, 0), width = 5)
+        pygame.draw.line(screen, line_color, (550, 0), (550, 550), width = 5)
+        pygame.draw.line(screen, line_color, (0, 550), (550, 550), width = 5)
+
     pygame.display.update()
 
 pygame.quit()
