@@ -19,14 +19,14 @@ display_start_message = my_font.render(start_message, True, (0, 0, 0))
 
 
 spsb = Slidingstartbutton(180, 100)
-number1 = Tile(0, 0, "number1.png", 50, 50)
-number2 = Tile(50, 0, "number2.png", 50, 50)
-number3 = Tile(100, 0, "number3.png", 50, 50)
-number4 = Tile(0, 50, "number4.png", 50, 50)
-number5 = Tile(50, 50, "number5.png", 50, 50)
-number6 = Tile(100, 50, "number6.png", 50, 50)
-number7 = Tile(0, 100, "number7.png", 50, 50)
-number8 = Tile(50, 100, "number8.png", 50, 50)
+number1 = Tile(0, 0, "number1.png", 180, 180)
+number2 = Tile(180, 0, "number2.png", 180, 180)
+number3 = Tile(360, 0, "number3.png", 180, 180)
+number4 = Tile(0, 180, "number4.png", 180, 180)
+number5 = Tile(180, 180, "number5.png", 180, 180)
+number6 = Tile(360, 180, "number6.png", 180, 180)
+number7 = Tile(0, 360, "number7.png", 180, 180)
+number8 = Tile(180, 360, "number8.png", 180, 180)
 
 
 r = 255
@@ -34,9 +34,15 @@ g = 255
 b = 255
 run = True
 start_game = False
-border = False
 
 orderfornumber1 = (180, 100)
+orderfornumber2 = (360, 100)
+orderfornumber3 = (0, 100)
+orderfornumber4 = (180, 180)
+orderfornumber5 = (360, 180)
+orderfornumber6 = (0, 180)
+orderfornumber7 = (180, 360)
+orderfornumber8 = (360, 360)
 
 
 while run:
@@ -46,8 +52,15 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if spsb.rect.collidepoint(event.pos):
                 start_game = True
-            if number1.rect.collidepoint(event.pos):
-                border = True
+            if number1.rect.collidepoint(event.pos) == True and start_game == True:
+                number1.shrink_image(170, 170)
+            # elif start_game == True and number2.rect.collidepoint(event.pos):
+            # elif start_game == True and number3.rect.collidepoint(event.pos):
+            # elif start_game == True and number4.rect.collidepoint(event.pos):
+            # elif start_game == True and number5.rect.collidepoint(event.pos):
+            # elif start_game == True and number6.rect.collidepoint(event.pos):
+            # elif start_game == True and number7.rect.collidepoint(event.pos):
+            # elif start_game == True and number8.rect.collidepoint(event.pos):
                 
     if start_game == False:
         screen.fill((r, g, b))
@@ -72,3 +85,4 @@ while run:
     pygame.display.update()
 
 pygame.quit()
+
