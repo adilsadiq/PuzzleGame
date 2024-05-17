@@ -54,13 +54,36 @@ while run:
                 start_game = True
             if number1.rect.collidepoint(event.pos) == True and start_game == True:
                 number1.shrink_image(170, 170)
-            # elif start_game == True and number2.rect.collidepoint(event.pos):
-            # elif start_game == True and number3.rect.collidepoint(event.pos):
-            # elif start_game == True and number4.rect.collidepoint(event.pos):
-            # elif start_game == True and number5.rect.collidepoint(event.pos):
-            # elif start_game == True and number6.rect.collidepoint(event.pos):
-            # elif start_game == True and number7.rect.collidepoint(event.pos):
-            # elif start_game == True and number8.rect.collidepoint(event.pos):
+            else: 
+                number1.shrink_image(180, 180)
+            if start_game == True and number2.rect.collidepoint(event.pos):
+                number2.shrink_image(170, 170)
+            else:
+                number2.shrink_image(180, 180)
+            if start_game == True and number3.rect.collidepoint(event.pos):
+                number3.shrink_image(170, 170)
+            else:
+                number3.shrink_image(180, 180)
+            if start_game == True and number4.rect.collidepoint(event.pos):
+                number4.shrink_image(170, 170)
+            else:
+                number4.shrink_image(180, 180)
+            if start_game == True and number5.rect.collidepoint(event.pos):
+                number5.shrink_image(170, 170)
+            else:
+                number5.shrink_image(180, 180)
+            if start_game == True and number6.rect.collidepoint(event.pos):
+                number6.shrink_image(170, 170)
+            else:
+                number6.shrink_image(180, 180)
+            if start_game == True and number7.rect.collidepoint(event.pos):
+                number7.shrink_image(170, 170)
+            else:
+                number7.shrink_image(180, 180)
+            if start_game == True and number8.rect.collidepoint(event.pos):
+                number8.shrink_image(170, 170)
+            else: 
+                number8.shrink_image(180, 180)
                 
     if start_game == False:
         screen.fill((r, g, b))
