@@ -1,4 +1,5 @@
 import pygame
+from pygame.constants import MOUSEMOTION
 from slidingstartoption import Slidingstartbutton
 from tiles import Tile
 
@@ -44,11 +45,10 @@ orderfornumber5 = (360, 180)
 orderfornumber6 = (0, 180)
 orderfornumber7 = (180, 360)
 orderfornumber8 = (360, 360)
-
+moving = False
 
 while run:
-
-
+   
         
 
     for event in pygame.event.get():
@@ -58,17 +58,25 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if spsb.rect.collidepoint(event.pos):
                 start_game = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
             if number1.rect.collidepoint(event.pos) == True and start_game == True:
                 number1.shrink_image(170, 170)
                 selected1 = True
-        if keys[pygame.K_d] and selected1 == True:
-            number1 = Tile(0 + 200, 0, "number1.png", 180, 180)
-        elif keys[pygame.K_a] and selected1 == True:
-            number1 = Tile(0 - 200, 0, "number1.png", 180, 180)
-        elif keys[pygame.K_w] and selected1 == True:
-            number1 = Tile(0, 0 - 200, "number1.png", 180, 180)
-        elif keys[pygame.K_s] and selected1 == True:
-            number1 = Tile(0, 0 + 200, "number1.png", 180, 180)
+                moving = True
+            elif event.type == pygame.MOUSEBUTTONUP:
+                moving = False
+            elif event.type == MOUSEMOTION and moving == True:
+                number1.move(event.pos[0] - number1.image_size[0])
+                # number1.move_ip(event.rel)  
+
+        # if keys[pygame.K_d] and selected1 == True:
+
+        # elif keys[pygame.K_a] and selected1 == True:
+        #     number1 = Tile(0 - 200, 0, "number1.png", 180, 180)
+        # elif keys[pygame.K_w] and selected1 == True:
+        #     number1 = Tile(0, 0 - 200, "number1.png", 180, 180)
+        # elif keys[pygame.K_s] and selected1 == True:
+        #     number1 = Tile(0, 0 + 200, "number1.png", 180, 180)
 
         # else: 
         #     number1.shrink_image(200, 200)
@@ -124,3 +132,4 @@ while run:
     pygame.display.update()
 
 pygame.quit()
+
