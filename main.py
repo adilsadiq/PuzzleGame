@@ -40,8 +40,8 @@ start_game = False
 moving = False
 
 while run:
-   
-        
+
+
 
     for event in pygame.event.get():
         keys = pygame.key.get_pressed() 
@@ -50,50 +50,52 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if spsb.rect.collidepoint(event.pos):
                 start_game = True
-        while start_game == True:
-            if event.type == pygame.MOUSEBUTTONDOWN and number1.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number1.move(x,y) 
-            elif event.type == pygame.MOUSEBUTTONDOWN and number2.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number2.move(x,y)
-            elif event.type == pygame.MOUSEBUTTONDOWN and number3.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number3.move(x,y)
-            elif event.type == pygame.MOUSEBUTTONDOWN and number4.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number4.move(x,y)
-            elif event.type == pygame.MOUSEBUTTONDOWN and number5.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number5.move(x,y)
-            elif event.type == pygame.MOUSEBUTTONDOWN and number6.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number6.move(x,y)
-            elif event.type == pygame.MOUSEBUTTONDOWN and number7.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number7.move(x,y)
-            elif event.type == pygame.MOUSEBUTTONDOWN and number8.rect.collidepoint(event.pos):
-                moving = True
-                if event.type == MOUSEMOTION:
-                    x,y = pygame.mouse.get_pos()
-                    number8.move(x,y)
-                
+                while start_game == True:
+                    if event.type == pygame.MOUSEBUTTONDOWN and number1.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number1.move(x,y) 
+                    elif event.type == pygame.MOUSEBUTTONDOWN and number2.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number2.move(x,y)
+                    elif event.type == pygame.MOUSEBUTTONDOWN and number3.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number3.move(x,y)
+                    elif event.type == pygame.MOUSEBUTTONDOWN and number4.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number4.move(x,y)
+                    elif event.type == pygame.MOUSEBUTTONDOWN and number5.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number5.move(x,y)
+                    elif event.type == pygame.MOUSEBUTTONDOWN and number6.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number6.move(x,y)
+                    elif event.type == pygame.MOUSEBUTTONDOWN and number7.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number7.move(x,y)
+                    elif event.type == pygame.MOUSEBUTTONDOWN and number8.rect.collidepoint(event.pos):
+                        moving = True
+                        if event.type == MOUSEMOTION:
+                            x,y = pygame.mouse.get_pos()
+                            number8.move(x,y)
+                    elif event.type == pygame.MOUSEBUTTONUP:
+                        moving = False
         
-                
+
+
     if start_game == False:
         screen.fill((r, g, b))
         screen.blit(display_start_message, (180, 0))
@@ -108,13 +110,15 @@ while run:
         screen.blit(number6.image, number6.rect)
         screen.blit(number7.image, number7.rect)
         screen.blit(number8.image, number8.rect)
-        
+
         pygame.draw.line(screen, line_color, (0, 0), (0, 600), width = 3)
         pygame.draw.line(screen, line_color, (0, 0), (600, 0), width = 5)
         pygame.draw.line(screen, line_color, (600, 0), (600, 600), width = 5)
         pygame.draw.line(screen, line_color, (0, 600), (600, 600), width = 5)
 
     pygame.display.update()
+
+pygame.quit()
 
 pygame.quit()
 
