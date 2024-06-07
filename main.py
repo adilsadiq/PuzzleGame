@@ -1,5 +1,5 @@
+
 import pygame
-from pygame.constants import MOUSEMOTION
 from slidingstartoption import Slidingstartbutton
 from tiles import Tile
 
@@ -14,10 +14,8 @@ size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
 line_color = (0, 0, 0)
 
-
 start_message = "Click the sliding puzzle to start"
 display_start_message = my_font.render(start_message, True, (0, 0, 0))
-
 
 spsb = Slidingstartbutton(180, 100)
 number1 = Tile(0, 0, "number1.png", 180, 180)
@@ -28,89 +26,44 @@ number5 = Tile(180, 180, "number5.png", 180, 180)
 number6 = Tile(360, 180, "number6.png", 180, 180)
 number7 = Tile(0, 360, "number7.png", 180, 180)
 number8 = Tile(180, 360, "number8.png", 180, 180)
-
+tiles = [number1, number2, number3, number4, number5, number6, number7, number8]
 
 r = 255
 g = 255
 b = 255
 run = True
 start_game = False
+selected_tile = None
+clock = pygame.time.Clock()
 
-
-moving = False
 
 while run:
-
-
-
+    clock.tick(60)
     for event in pygame.event.get():
-        keys = pygame.key.get_pressed() 
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if spsb.rect.collidepoint(event.pos):
-                start_game = True
-                while start_game == True:
-                    if event.type == pygame.MOUSEBUTTONDOWN and number1.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number1.move(x,y) 
-                    elif event.type == pygame.MOUSEBUTTONDOWN and number2.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number2.move(x,y)
-                    elif event.type == pygame.MOUSEBUTTONDOWN and number3.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number3.move(x,y)
-                    elif event.type == pygame.MOUSEBUTTONDOWN and number4.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number4.move(x,y)
-                    elif event.type == pygame.MOUSEBUTTONDOWN and number5.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number5.move(x,y)
-                    elif event.type == pygame.MOUSEBUTTONDOWN and number6.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number6.move(x,y)
-                    elif event.type == pygame.MOUSEBUTTONDOWN and number7.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number7.move(x,y)
-                    elif event.type == pygame.MOUSEBUTTONDOWN and number8.rect.collidepoint(event.pos):
-                        moving = True
-                        if event.type == MOUSEMOTION:
-                            x,y = pygame.mouse.get_pos()
-                            number8.move(x,y)
-                    elif event.type == pygame.MOUSEBUTTONUP:
-                        moving = False
-        
+            if not start_game:
+                if spsb.rect.collidepoint(event.pos):
+                    start_game = True
+            else:
+                for tile in tiles:
+                    if tile.rect.collidepoint(event.pos):
+                        selected_tile = tile
+                        break
+        if event.type == pygame.MOUSEBUTTONUP:
+            selected_tile = None
+        if event.type == pygame.MOUSEMOTION and selected_tile:
+            selected_tile.rect.center = event.pos
 
-
-    if start_game == False:
-        screen.fill((r, g, b))
+    screen.fill((r, g, b))
+    if not start_game:
         screen.blit(display_start_message, (180, 0))
         screen.blit(spsb.image, spsb.rect)
-    if start_game == True:
-        screen.fill((r, g, b))
-        screen.blit(number1.image, number1.rect)
-        screen.blit(number2.image, number2.rect)
-        screen.blit(number3.image, number3.rect)
-        screen.blit(number4.image, number4.rect)
-        screen.blit(number5.image, number5.rect)
-        screen.blit(number6.image, number6.rect)
-        screen.blit(number7.image, number7.rect)
-        screen.blit(number8.image, number8.rect)
-
+    else:
+        for tile in tiles:
+            screen.blit(tile.image, tile.rect)
+            
         pygame.draw.line(screen, line_color, (0, 0), (0, 600), width = 3)
         pygame.draw.line(screen, line_color, (0, 0), (600, 0), width = 5)
         pygame.draw.line(screen, line_color, (600, 0), (600, 600), width = 5)
@@ -119,6 +72,8 @@ while run:
     pygame.display.update()
 
 pygame.quit()
+
+
 
 pygame.quit()
 
